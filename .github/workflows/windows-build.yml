@@ -17,7 +17,7 @@ jobs:
         run: echo "This is a test file." > test.txt
 
       - name: Upload test artifact
-        uses: actions/upload-artifact@v2  # or a specific SHA if needed
+        uses: actions/upload-artifact@v4  # or a specific SHA if needed
         with:
           name: test-artifact
           path: test.txt
