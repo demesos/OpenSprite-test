@@ -57,6 +57,11 @@ FORMS += \
 
 RC_ICONS = icons/opensprite96x96.ico
 
+# Embed the Per-Monitor-V2 DPI manifest on Windows.
+# Without this, Windows bitmap-stretches the window when moving between
+# screens of different DPI, causing the tiny/oversized effect.
+win32: QMAKE_MANIFEST = opensprite.manifest
+
 
 # macOS icon
 macx {
