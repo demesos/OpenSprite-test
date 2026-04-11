@@ -4,6 +4,18 @@
 
 int main(int argc, char *argv[])
 {
+    // Let Windows handle per-monitor DPI scaling natively.
+    // AA_EnableHighDpiScaling tells Qt to honour the OS scale factor;
+    // PassThrough prevents Qt from rounding the factor (e.g. 1.5x stays 1.5x)
+    // so elements don't jump in size when the window moves between screens.
+    // These must be set before QApplication is constructed.
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+    QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+#endif
+    QApplication::setHighDpiScaleFactorRoundingPolicy(
+        Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
+
     QApplication a(argc, argv);
     QCoreApplication::setOrganizationName("jowin202");
     QCoreApplication::setOrganizationDomain("github.com/jowin202");
